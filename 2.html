@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Mehul!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff6f61, #fbc2eb);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 10px 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: #ffddc1;
+      margin-top: 10px;
+      animation: bounce 2s infinite alternate;
+    }
+
+    .cheers-btn {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      background: #ff9a9e;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .cheers-btn:hover {
+      transform: scale(1.1);
+      background: #fbc2eb;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Confetti Styling */
+    .confetti {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      background: white;
+      opacity: 0.7;
+      transform: translateX(-50%) rotate(45deg);
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateX(0) rotate(0);
+        top: -10px;
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(100px) rotate(720deg);
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+
+    /* Balloon Styling */
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 60px;
+      height: 80px;
+      background: #ff6f61;
+      border-radius: 50%;
+      box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.6);
+      animation: floatUp linear infinite;
+    }
+
+    .balloon:nth-child(2) {
+      background: #fbc2eb;
+      width: 70px;
+      height: 90px;
+      animation-duration: 6s;
+      left: 25%;
+    }
+
+    .balloon:nth-child(3) {
+      background: #ff9a9e;
+      width: 50px;
+      height: 70px;
+      animation-duration: 8s;
+      left: 60%;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      100% {
+        transform: translateY(-120vh) translateX(30px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Happy Birthday Mehul! 🎉</h1>
+    <h2>Cheers to 22 amazing years! 🥳</h2>
+    <h3 id="cheers-msg">Click Celebrate for a Surprise Message!</h3>
+    <button class="cheers-btn" onclick="celebrate()">Celebrate 🎊</button>
+  </div>
+
+  <!-- Confetti Wrapper -->
+  <div id="confetti-wrapper"></div>
+
+  <!-- Balloons -->
+  <div class="balloon" style="animation-duration: 5s; left: 10%;"></div>
+  <div class="balloon" style="animation-duration: 6s; left: 30%;"></div>
+  <div class="balloon" style="animation-duration: 7s; left: 50%;"></div>
+  <div class="balloon" style="animation-duration: 8s; left: 70%;"></div>
+  <div class="balloon" style="animation-duration: 9s; left: 90%;"></div>
+
+  <script>
+    const messages = [
+      "Here's to a year full of joy and laughter! 🎉",
+      "May your 22nd year be the best one yet! 🌟",
+      "Keep shining and dreaming big, Mehul! 💫",
+      "The best is yet to come—enjoy every moment! 🌈",
+      "You’re 22 and unstoppable—cheers to you! 🥂",
+      "Wishing you endless happiness and success! 🎁",
+      "Make a wish—it’s your time to shine! ✨"
+    ];
+
+    // Add confetti animation dynamically
+    function createConfetti() {
+      const confettiWrapper = document.getElementById('confetti-wrapper');
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        confettiWrapper.appendChild(confetti);
+      }
+    }
+
+    // Display a random message
+    function celebrate() {
+      createConfetti(); // Add confetti animation
+      const cheersMsg = document.getElementById('cheers-msg');
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      cheersMsg.textContent = randomMessage;
+    }
+  </script>
+</body>
+</html>
